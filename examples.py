@@ -7,7 +7,7 @@ Author: Julian A. Gonzalez, IBM Champion 2025
 
 DISCLAIMER: This is an independent project and is NOT an official IBM product.
 
-Copyright 2024 Julian A. Gonzalez, IBM Champion 2025
+Copyright 2025 Julian A. Gonzalez
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
