@@ -9,7 +9,7 @@ This implementation creates a dual-agent system where:
 - Agent 2 (Critic): Evaluates and provides constructive feedback
 - Coordinator: Manages the interaction loop and convergence
 
-Copyright 2024 Julian A. Gonzalez, IBM Champion 2025
+Copyright 2025 Julian A. Gonzalez, IBM Champion 2025
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
