@@ -2,7 +2,7 @@
 
 ## 📦 What You've Received
 
-This is a complete, production-ready dual-agent system implementing cutting-edge agentic AI patterns using IBM's Granite3-MoE:1B model.
+This is a complete, dual-agent system implementing cutting-edge agentic AI patterns using IBM's super-efficient Granite3-MoE:1B model.
 
 ### Package Contents
 
@@ -77,7 +77,7 @@ That's it! The script will:
 
 ### What is This?
 
-A sophisticated AI system where two specialized agents work together:
+A sophisticated AI system where two IBM Granite-3.3-moe:1b specialized agents work together:
 
 ```
 User Query → Generator Agent → Critic Agent → Refined Response
