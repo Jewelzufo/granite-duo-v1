@@ -1,8 +1,13 @@
-# granite-duo-v1
+<div align="center">
+       <h1>Granite-Duo-v1</h1>
+       <i>Julian A. Gonzalez, 10-25-2025</i>
+</div>
+<div align="center">
+       <img src="https://github.com/Jewelzufo/granite-duo-v1/blob/main/1000068993%20(1).jpg?raw=true" alt="Ollama and IBM logo with cyberpunk theme" width="650" height="400" />
+       <h2>Dual-Agent System: IBM Granite3-MoE:1B</h2>
+       
+</div>
 
-*Julian A. Gonzalez, 10-25-2025*
-
-## Dual-Agent System: IBM Granite3-MoE:1B
 
 ## 🎯 Overview
 
