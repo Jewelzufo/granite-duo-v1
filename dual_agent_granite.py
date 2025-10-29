@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Dual-Agent System using IBM Granite3-MoE:1B via Ollama
-Author: Julian A. Gonzalez, IBM Champion 2025
+Author: Julian A. Gonzalez
 Pattern: Researcher-Critic (Reflection Pattern)
 
 This implementation creates a dual-agent system where:
