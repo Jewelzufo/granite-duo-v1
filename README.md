@@ -43,7 +43,7 @@
 
 ## 🎯 Overview
 
-This project implements a **production-ready dual-agent system** that leverages the **Reflection agentic design pattern**. Two specialized AI agents collaborate iteratively to produce high-quality responses:
+This project implements a pipeline that leverages the **Reflection agentic design pattern**. Two specialized AI agents collaborate iteratively to produce high-quality responses:
 
 - **Generator Agent** 🔨 Creates comprehensive, well-researched initial responses
 - **Critic Agent** 👀 Evaluates outputs and provides constructive, actionable feedback  
