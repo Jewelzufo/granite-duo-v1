@@ -1,556 +1,568 @@
-<div align="center">
-  <h1>Granite-Duo-v1</h1>
-</div>
+<h1 align="center">Granitepi-4-Nano</h1>
 
-<!-- Badges Section -->
-<div align="center">
+<p align="center">
+  <img src="https://github.com/Jewelzufo/granitepi-4-nano/blob/main/granitepi4.jpg?raw=true" width="600" height="400">
+</p>
 
-[![Python 3.8+](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-green.svg)](https://opensource.org/licenses/Apache-2.0)
+**Date**: 11-01-2025 | **Version**: 1.0
 
+**Designed by**: *Julian A. Gonzalez* - ([Linkedin](www.linkedin.com/in/julian-g-7b533129a))
 
-**An agentic AI system implementing the Reflection design pattern using IBM's Granite3-MoE:1B model**
-
-[Features](#-features) • [Quick Start](#-quick-start) • [Contributing](#-contributing)
-
-</div>
-
-<div align="center">
-  <img src="https://github.com/Jewelzufo/granite-duo-v1/blob/main/1000068993%20(1).jpg?raw=true" alt="Ollama and IBM logo with cyberpunk theme" width="650" height="350" />
-  <h2>Privacy-First Multi-Agent AI Learning System</h2>
-  <p>
-    <em>No cloud dependencies • No data sharing • Complete transparency</em>
-  </p>
-</div>
-
-
-## 📋 Table of Contents
-
-- [Overview](#-overview)
-- [Features](#-features)
-- [Prerequisites](#-prerequisites)
-- [Quick Start](#-quick-start)
-- [Usage Guide](#-usage-guide)
-- [Configuration](#-configuration)
-- [Advanced Usage](#-advanced-usage)
-- [Performance](#-performance)
-- [Troubleshooting](#-troubleshooting)
-- [Contributing](#-contributing)
-- [License](#-license)
-- [References](#-references)
+**Co-Contributor**: *Thomas Mertens* - ([Linkedin](https://www.linkedin.com/in/tgmertens/))
 
 ---
 
-## 🎯 Overview
-
-This project implements a pipeline that leverages the **Reflection agentic design pattern**. Two specialized AI agents collaborate iteratively to produce high-quality responses:
-
-- **Generator Agent** 🔨 Creates comprehensive, well-researched initial responses
-- **Critic Agent** 👀 Evaluates outputs and provides constructive, actionable feedback  
-- **Coordinator** 🎛️ Orchestrates the iterative refinement process for optimal results
-
-Perfect for research, content creation, code generation, and complex problem-solving tasks.
+![Raspberry Pi 5](https://img.shields.io/badge/Hardware-Raspberry%20Pi%205-red?logo=raspberrypi)
+![Ollama](https://img.shields.io/badge/Framework-Ollama-yellow)
+![IBM Granite](https://img.shields.io/badge/Model-IBM%20Granite%204.0-blue)
 
 ---
 
-## ✨ Features
+## What This Does
 
-- ⚡ **Lightweight & Efficient** - Runs on ~2-4GB RAM using 1B parameter Mixture-of-Experts model
-- 🔄 **Iterative Refinement** - Up to 3 rounds of generator-critic feedback loops
-- 🎯 **Early Convergence** - Detects quality thresholds and stops early when appropriate
-- 📊 **Full History Tracking** - Complete conversation logs for analysis and debugging
-- 🛠️ **Self-Healing** - Auto-installs dependencies and pulls models on first run
-- 🎨 **Beautiful UI** - Rich terminal output with progress indicators and structured formatting
-- 🔧 **Highly Configurable** - Template-based configuration with 5 built-in presets (research, creative, technical, quick, thorough)
-- 📚 **Well-Documented** - 8 complete examples covering diverse use cases
+Run a complete, privacy-focused large language model on your Raspberry Pi 5 with zero cloud dependency. This guide gets IBM Granite 4.0 (350M parameters) running locally in under 45 minutesno AI experience required.
 
 ---
 
-## 🏗️ Architecture
+## Prerequisites Check
 
-### System Flow
+Before starting, verify your setup meets these requirements:
 
-```
-┌─────────────┐
-│ User Query  │
-└──────┬──────┘
-       │
-       ▼
-┌─────────────────────────────────────────┐
-│    Dual-Agent Coordinator               │
-│  ┌───────────────────────────────────┐  │
-│  │  Iteration Loop (max 3)           │  │
-│  │                                   │  │
-│  │  1️⃣  Generator Phase              │  │
-│  │     Create comprehensive response │  │
-│  │                                   │  │
-│  │  2️⃣  Critic Phase (if not final)  │  │
-│  │     Evaluate & provide feedback   │  │
-│  │                                   │  │
-│  │  3️⃣  Convergence Check            │  │
-│  │     Stop if quality threshold met │  │
-│  │                                   │  │
-│  └───────────────────────────────────┘  │
-└─────────────────────────────────────────┘
-       │
-       ▼
-┌──────────────────┐
-│Final Refined     │
-│Response          │
-└──────────────────┘
-```
+### Hardware Requirements
+- **Raspberry Pi 5 with 8GB RAM** (required)
+- **32GB+ SD card** or **NVMe M.2 SSD** (SSD recommended)
+- **Official USB-C power supply** (5V 5A)
+- **Active cooling** (heatsink + fan recommended)
 
-### Reflection Pattern (4-Phase Cycle)
+### Verify Your System
 
-1. **Generator Phase** - Initial comprehensive response creation
-2. **Critic Phase** - Quality evaluation and gap identification
-3. **Feedback Integration** - Incorporation of constructive feedback
-4. **Iteration** - Repeat until convergence or max iterations
-
----
-
-## 📋 Prerequisites
-
-### System Requirements
-- **Python:** 3.8 or higher
-- **RAM:** 2-4 GB minimum
-- **Disk Space:** ~5 GB (for model download)
-- **OS:** macOS, Linux, or Windows
-
-### Software Requirements
-
-**Ollama** (LLM Runtime)
-- Download: [ollama.com](https://ollama.com/download)
-- macOS/Linux: `curl -fsSL https://ollama.com/install.sh | sh`
-- Windows: Download installer from website
-
----
-
-## ⚙️ Installation
-
-### Step 1: Clone Repository
+Run these commands to check compatibility:
 
 ```bash
-git clone https://github.com/yourusername/dual-agent-granite.git
-cd dual-agent-granite
+# Check architecture (must show: aarch64)
+uname -m
+
+# Check 64-bit OS (must show: 64)
+getconf LONG_BIT
+
+# Check available RAM (should show ~7-8GB)
+free -h
+
+# Check free storage (need ~4GB)
+df -h
 ```
 
-### Step 2: Install Python Dependencies
+✅ **All checks passed?** Continue to installation below.
+
+❌ **Something failed?** See [Common Questions](#common-questions) for help.
+
+---
+
+## Installation (5 Minutes)
+
+### Step 1: Update Your System (2 min)
 
 ```bash
-pip install -r requirements.txt
+sudo apt update && sudo apt full-upgrade -y
 ```
 
-Or manually:
+### Step 2: Install Ollama (1 min)
+
 ```bash
-pip install requests>=2.31.0 rich>=13.7.0
+curl -fsSL https://ollama.ai/install.sh | sh
 ```
 
-### Step 3: Start Ollama Service
+### Step 3: Verify Installation
 
 ```bash
-# macOS/Linux
-ollama serve
-
-# Windows
-# Launch the Ollama application from your Applications folder
+ollama --version
 ```
 
-### Step 4: Verify Setup
+You should see a version number like `0.1.20` or higher.
+
+### Step 4: Download the Model (2-5 min)
 
 ```bash
-# The system will auto-pull the model on first run, or manually:
-ollama pull granite3-moe:1b
+ollama pull ibm/granite4:350m-h
+```
+
+**What's happening:** Downloads ~366 MB, expands to ~1.2 GB in RAM when running.
+
+---
+
+## Your First Query
+
+### Single Question
+
+```bash
+ollama run ibm/granite4:350m-h "What is Python?"
+```
+
+**Expected:** A clear answer in ~2-5 seconds.
+
+### Interactive Chat
+
+```bash
+ollama run ibm/granite4:350m-h
+```
+
+Now you can have a conversation. Type your questions and press Enter. Press `Ctrl+D` to exit.
+
+**Example conversation:**
+```
+>>> What is machine learning?
+[Claude responds...]
+
+>>> Give me a Python example
+[Claude responds...]
+
+>>> /bye
+```
+
+✅ **It works!** You're ready to explore more in [Usage Patterns](#usage-patterns).
+
+---
+
+## Common Questions
+
+### Q: Will this work on Raspberry Pi 4 or Pi 3?
+
+**A:** Pi 4 *might* work with smaller models, but performance will be slow. Pi 3 is not recommended. **Pi 5 with 8GB RAM is strongly recommended** for Granite 4.0.
+
+### Q: Do I need internet after setup?
+
+**A:** No. Once the model is downloaded, everything runs 100% offline. Your data never leaves your device.
+
+### Q: How much power does it use?
+
+**A:** Only ~5-7 watts during inference, efficient compared to GPUs.
+
+### Q: Can I use this for commercial projects?
+
+**A:** Yes! Both Ollama and IBM Granite 4.0 are Apache 2.0 licensed (open source, free for commercial use).
+
+### Q: Why Granite 4.0 instead of other models?
+
+**A:** Granite 4.0's hybrid Mamba architecture is optimized for small devices. After testing many tiny (0.5-1gb) models on Pi 5, Granite consistently performs well with limited resources.
+
+### Q: Can I run multiple models?
+
+**A:** Yes, but one at a time due to memory limits. You can switch between models instantly.
+
+### Q: The model is slow or system is freezing. What do I do?
+
+**A:** Check temperature (`vcgencmd measure_temp`), ensure active cooling is working, and see [Performance & Optimization](#performance--optimization) below.
+
+### Q: How do I integrate this into my app?
+
+**A:** Use the REST API at `http://localhost:11434/api/generate`. See [Usage Patterns](#usage-patterns) for Python examples.
+
+**More questions?** Check [Troubleshooting](#troubleshooting) or open a GitHub issue.
+
+---
+
+## Model Specifications
+
+| Aspect | Details |
+|--------|---------|
+| **Model** | IBM Granite 4.0 (350M-H) |
+| **Parameters** | 350 Million |
+| **Architecture** | Hybrid Mamba-2 (SSM) |
+| **Download Size** | ~366 MB |
+| **Loaded Size** | ~1.2 GB RAM |
+| **Inference Memory** | ~0.8GB |
+| **License** | Apache 2.0 (Open Source) |
+| **Languages** | 12+ (English, Spanish, French, German, Japanese, etc.) |
+
+---
+
+## Usage Patterns
+
+### Essential: Command Line Queries
+
+**Simple question:**
+```bash
+ollama run ibm/granite4:350m-h "How do neural networks work?"
+```
+
+**Multi-line prompt:**
+```bash
+ollama run ibm/granite4:350m-h "
+Write a Python function that:
+1. Takes a list of numbers
+2. Returns the average
+3. Handles empty lists
+"
+```
+
+**Custom creativity level:**
+```bash
+# More creative (0.0-1.0)
+ollama run ibm/granite4:350m-h --temperature 0.8 "Write a haiku about AI"
 ```
 
 ---
 
-## 🚀 Quick Start
+### Intermediate: REST API Usage
 
-### Interactive Mode
-
+**Query via curl:**
 ```bash
-python dual_agent_granite.py
+curl http://localhost:11434/api/generate \
+  -d '{
+    "model": "ibm/granite4:350m-h",
+    "prompt": "Explain dark matter",
+    "stream": false
+  }'
 ```
 
-Then select from:
-1. Pre-configured example queries
-2. Enter your own custom query
-
-### Programmatic Usage
-
+**Python integration:**
 ```python
-from dual_agent_granite import OllamaClient, DualAgentCoordinator
+import requests
 
-# Initialize the system
-client = OllamaClient()
-coordinator = DualAgentCoordinator(client)
+def query_ai(prompt):
+    response = requests.post(
+        'http://localhost:11434/api/generate',
+        json={
+            'model': 'ibm/granite4:350m-h',
+            'prompt': prompt,
+            'stream': False
+        }
+    )
+    return response.json()['response']
 
-# Run a query
-result = coordinator.run(
-    user_query="Explain quantum computing in simple terms",
-    max_iterations=3,
-    verbose=True
-)
-
-# Access results
-print(result['final_response'])
-print(f"Converged: {result['converged']}")
-print(f"Iterations: {result['iterations']}")
-```
-
-### Output Structure
-
-```python
-{
-    'final_response': str,          # Final refined answer
-    'iterations': int,               # Number of iterations performed
-    'converged': bool,               # Quality threshold met?
-    'history': List[Dict],           # Full conversation history
-    'generator_calls': int,          # Total generator invocations
-    'critic_calls': int              # Total critic invocations
-}
+# Use it
+result = query_ai("What is quantum entanglement?")
+print(result)
 ```
 
 ---
 
-## 📚 Usage Guide
+### Advanced: Custom Configuration
 
-### 8 Complete Examples
-
-The `examples.py` file includes 8 working demonstrations:
-
-| Example | Use Case | Focus |
-|---------|----------|-------|
-| Basic Query | General questions | Default behavior |
-| Technical Question | Specialized topics | Statistics & metrics |
-| Creative Task | Writing & ideation | High temperature (0.9) |
-| Code Generation | Programming tasks | Code quality review |
-| Comparative Analysis | Multi-dimensional comparison | Thorough analysis |
-| Minimal Iterations | Quick responses | Speed optimization |
-| Batch Processing | Multiple queries | Efficiency at scale |
-| History Tracking | Evolution analysis | Iteration-by-iteration breakdown |
-
-Run examples:
+**Keep model loaded (faster subsequent queries):**
 ```bash
-python examples.py
+OLLAMA_KEEP_ALIVE=24h ollama run ibm/granite4:350m-h
 ```
 
----
-
-## 🔧 Configuration
-
-### Basic Configuration
-
-Create a `config.py` from `config_template.py`:
-
+**Limit threads for stability:**
 ```bash
-cp config_template.py config.py
+# Pi 5 has 4 cores, limit to 2 for better thermal management
+OLLAMA_NUM_THREADS=2 ollama run ibm/granite4:350m-h
 ```
 
-### Common Settings
+**Monitor system temperature:**
+```bash
+# Check temp continuously
+watch -n 1 'vcgencmd measure_temp'
+```
 
-**Agent Behavior**
+**Full Python example with error handling:**
 ```python
-GENERATOR_CONFIG = {
-    "temperature": 0.7,      # Creativity (0.0-1.0)
-    "max_tokens": 2048,      # Response length
-    "top_p": 0.9,           # Nucleus sampling
-}
+import requests
+import json
 
-CRITIC_CONFIG = {
-    "temperature": 0.5,      # Lower for analytical feedback
-    "max_tokens": 1024,      # Shorter feedback
-    "top_p": 0.8,
-}
+class LocalAI:
+    def __init__(self, model="ibm/granite4:350m-h"):
+        self.url = "http://localhost:11434/api/generate"
+        self.model = model
+    
+    def ask(self, prompt, temperature=0.7):
+        try:
+            response = requests.post(
+                self.url,
+                json={
+                    'model': self.model,
+                    'prompt': prompt,
+                    'temperature': temperature,
+                    'stream': False
+                },
+                timeout=30
+            )
+            response.raise_for_status()
+            return response.json()['response']
+        except requests.exceptions.RequestException as e:
+            return f"Error: {e}"
+
+# Usage
+ai = LocalAI()
+print(ai.ask("Explain recursion in programming"))
 ```
 
-**Iteration Control**
-```python
-MAX_ITERATIONS = 3          # Max refinement cycles
-CONVERGENCE_KEYWORDS = [
-    "no significant improvements needed",
-    "response is comprehensive and accurate",
-    "quality is satisfactory"
-]
-```
-
-### Use Case Presets
-
-Five built-in presets optimize for different scenarios:
-
-```python
-from config import PRESETS
-
-# Research: High accuracy, low temperature
-preset = PRESETS['research']  # temp: 0.3, iterations: 3
-
-# Creative: High creativity, multiple iterations
-preset = PRESETS['creative']  # temp: 0.9, iterations: 3
-
-# Technical: Precision focused
-preset = PRESETS['technical']  # temp: 0.2, iterations: 2
-
-# Quick: Speed over perfection
-preset = PRESETS['quick']  # temp: 0.5, iterations: 1
-
-# Thorough: Exhaustive analysis
-preset = PRESETS['thorough']  # temp: 0.4, iterations: 5
-```
+**For more examples:** See [TUTORIAL.md](TUTORIAL.md) for complete integration guides.
 
 ---
 
-## 🔍 Advanced Usage
+## Performance & Optimization
 
-### Custom Temperature Settings
+### Benchmark Expectations
 
-Adjust creativity for different task types:
+On **Raspberry Pi 5 (8GB, active cooling)**:
 
-```python
-# Factual queries (0.2-0.4)
-coordinator.generator.config.temperature = 0.3
-coordinator.critic.config.temperature = 0.4
-
-# Balanced (0.5-0.7)
-coordinator.generator.config.temperature = 0.6
-coordinator.critic.config.temperature = 0.5
-
-# Creative tasks (0.8-1.0)
-coordinator.generator.config.temperature = 0.9
-coordinator.critic.config.temperature = 0.7
-```
-
-### Batch Processing
-
-```python
-queries = [
-    "What is Docker?",
-    "Explain Kubernetes",
-    "What are microservices?"
-]
-
-coordinator = DualAgentCoordinator(client)
-results = []
-
-for query in queries:
-    result = coordinator.run(query, max_iterations=2, verbose=False)
-    results.append(result)
-```
-
-
-### Custom System Prompts
-
-```python
-from dual_agent_granite import Agent, AgentConfig, AgentRole
-
-custom_config = AgentConfig(
-    name="CustomGenerator",
-    role=AgentRole.GENERATOR,
-    system_prompt="Your custom system prompt here...",
-    temperature=0.6
-)
-
-custom_agent = Agent(custom_config, client)
-```
-
----
-
-## 📊 Performance
-
-### Granite3-MoE:1B Specifications
-
-| Metric | Value |
-|--------|-------|
-| Model Parameters | 1 billion (Mixture of Experts) |
-| Context Length | 4096 tokens |
-| Training Data | 10+ trillion tokens |
-| Memory Usage | 2-4 GB RAM |
-| Latency (single inference) | 1-3 seconds |
-| Full cycle (3 iterations) | 10-20 seconds |
+| Metric | Typical Performance |
+|--------|---------------------|
+| Model load time | 8-12 seconds (cached after first run) |
+| Response time | 2-5 seconds (100-token response) |
+| Throughput | 30-50 tokens/second |
+| Operating temp | 55-65°C (normal with cooling) |
+| Memory usage | ~1.2 GB peak |
 
 ### Optimization Tips
 
-1. **Reduce Iterations** - Start with `max_iterations=2` for speed
-2. **Lower max_tokens** - Default 2048 is generous; try 1024
-3. **GPU Acceleration** - Ollama supports CUDA/Metal for faster inference
-4. **Query Specificity** - Better queries = fewer refinement cycles needed
-5. **Temperature Tuning** - Lower temp = fewer iterations for convergence
+**1. Use an SSD instead of SD card**
+- 2-3x faster model loading
+- Better sustained performance
+
+**2. Ensure proper cooling**
+- Keep temperature under 70°C
+- Use heatsink + active fan
+- Check: `vcgencmd measure_temp`
+
+**3. Increase swap if needed**
+```bash
+# Edit swap configuration
+sudo nano /etc/dphys-swapfile
+# Set: CONF_SWAPSIZE=2048
+
+# Restart swap
+sudo dphys-swapfile setup
+sudo dphys-swapfile swapon
+```
+
+**4. Keep model loaded for frequent queries**
+```bash
+# Keeps model in memory for 24 hours
+OLLAMA_KEEP_ALIVE=24h ollama run ibm/granite4:350m-h
+```
+
+**5. Adjust thread count if overheating**
+```bash
+# Reduce from 4 cores to 2
+OLLAMA_NUM_THREADS=2 ollama run ibm/granite4:350m-h
+```
 
 ---
 
-## 🐛 Troubleshooting
+## Privacy & Security
 
-### Issue: Ollama not running
+This setup is **100% private** by design:
 
-**Error:** Connection refused to `localhost:11434`
+✅ **No cloud uploads** — Everything runs locally  
+✅ **No internet required** — Works offline after setup  
+✅ **No account needed** — No tracking, no sign-ups  
+✅ **Open source** — Auditable code (Apache 2.0)  
+✅ **Your data stays yours** — Medical records, code, personal notes never leave your device
 
-**Solution:**
-```bash
-# Start Ollama service
-ollama serve
+**Perfect for:**
+- Healthcare data analysis (HIPAA-sensitive)
+- Legal document review (confidential)
+- Personal journaling with AI assistance
+- Proprietary business intelligence
+- Code development without vendor lock-in
+- Educational experiments
 
-# Verify connection
-curl http://localhost:11434/api/tags
-```
+---
 
-### Issue: Model not found
+## Troubleshooting
 
-**Error:** Model `granite3-moe:1b` not available
+### Model won't download
 
-**Solution:**
-```bash
-# Manual model pull
-ollama pull granite3-moe:1b
-
-# List available models
-ollama list
-```
-
-### Issue: Slow responses
-
-**Error:** Script takes >30 seconds for 3 iterations
+**Symptoms:** Download fails or hangs
 
 **Solutions:**
-1. Reduce iterations: `max_iterations=2`
-2. Lower max_tokens: `max_tokens=1024`
-3. Enable GPU: Check Ollama GPU settings
-4. Use smaller model: `granite3-dense:2b`
+```bash
+# Retry (resumes from checkpoint)
+ollama pull ibm/granite4:350m-h
 
-### Issue: Out of memory
+# Or clear cache and retry
+rm -rf ~/.ollama/models/*
+ollama pull ibm/granite4:350m-h
 
-**Error:** Process killed or "OutOfMemory" error
+# Check network
+ping -c 3 ollama.ai
+```
+
+---
+
+### System becomes unresponsive or very slow
+
+**Symptoms:** System freezes, queries take 30+ seconds
 
 **Solutions:**
-1. Close other applications
-2. Use smaller model or lower max_tokens
-3. Increase system RAM (requires 2-4GB minimum)
-4. Check Ollama memory allocation settings
 
-### Issue: Import errors
+1. **Check temperature:**
+   ```bash
+   vcgencmd measure_temp
+   # Should be < 70°C
+   ```
 
-**Error:** `ModuleNotFoundError: No module named 'requests'`
+2. **Reduce thread count:**
+   ```bash
+   OLLAMA_NUM_THREADS=1 ollama run ibm/granite4:350m-h
+   ```
 
-**Solution:**
+3. **Increase swap:**
+   ```bash
+   sudo nano /etc/dphys-swapfile
+   # Set: CONF_SWAPSIZE=2048
+   sudo dphys-swapfile setup
+   sudo dphys-swapfile swapon
+   ```
+
+4. **Use SSD instead of SD card** for better I/O performance
+
+---
+
+### "Connection refused" or API errors
+
+**Symptoms:** Can't connect to `localhost:11434`
+
+**Solutions:**
 ```bash
-pip install --upgrade requests rich
+# Check if Ollama is running
+systemctl status ollama
+
+# Restart Ollama
+sudo systemctl restart ollama
+
+# Check port
+sudo netstat -tlnp | grep 11434
 ```
 
-### Issue: Permission denied
+---
 
-**Error:** Running on Windows with admin restrictions
+### Model gives poor/incorrect answers
 
-**Solution:**
+**This is expected behavior:**
+- Granite 4.0 (350M) is a small model optimized for edge devices
+- It's designed for general assistance, not specialized expertise
+- Accuracy improves with clearer, more specific prompts
+
+**Tips for better responses:**
+- Be specific in your questions
+- Provide context when needed
+- Use temperature settings (lower = more focused)
+- For specialized tasks, consider fine-tuning or larger models
+
+---
+
+### Out of memory errors
+
+**Symptoms:** Process killed, OOM errors
+
+**Solutions:**
 ```bash
-# Run PowerShell as Administrator
-python dual_agent_granite.py
+# Check available memory
+free -h
+
+# Close other applications
+# Increase swap (see above)
+
+# Use lighter model (if available)
+ollama pull tinyllama
 ```
 
 ---
 
-## 🤝 Contributing
+### Installation fails
 
-Contributions are welcome! Here's how to get involved:
+**Symptoms:** `install.sh` script errors
 
-### Reporting Issues
+**Solutions:**
+```bash
+# Ensure 64-bit OS
+getconf LONG_BIT  # Must show 64
 
-- Use GitHub Issues with clear titles
-- Include Python version and OS
-- Provide reproduction steps
-- Attach error logs/tracebacks
+# Update system first
+sudo apt update && sudo apt full-upgrade -y
 
-### Enhancement Suggestions
+# Install dependencies manually
+sudo apt install curl ca-certificates -y
 
-- Feature requests: Describe use case and expected behavior
-- Performance improvements: Include benchmark data
-- Documentation: Identify unclear sections
+# Retry installation
+curl -fsSL https://ollama.ai/install.sh | sh
+```
 
-### Code Contributions
-
-1. **Fork** the repository
-2. **Create** a feature branch: `git checkout -b feature/amazing-feature`
-3. **Make** your changes with clear commit messages
-4. **Test** your changes: `python examples.py`
-5. **Follow** code style: `black dual_agent_granite.py`
-6. **Submit** a Pull Request with description
-
-### Areas for Enhancement
-
-- [ ] Tool-calling capabilities (web search, code execution)
-- [ ] RAG (Retrieval-Augmented Generation) integration
-- [ ] Supervisor agent for 3+ agent orchestration
-- [ ] Streaming response support
-- [ ] Performance metrics dashboard
-- [ ] Fine-tuning utilities
-- [ ] Multi-language support
-- [ ] FastAPI/REST API wrapper
-- [ ] Docker containerization
-- [ ] Evaluation frameworks
-
-### Code Style
-
-- Add docstrings to functions
-- Use type hints for clarity
+**Still stuck?** Open a [GitHub issue](https://github.com/Jewelzufo/granitepi-4-nano/issues) with:
+- Your error message
+- Output of `uname -a`
+- Output of `free -h`
 
 ---
 
-## 📄 License
+## Learn More
 
-This project is licensed under the **Apache License 2.0** - see the LICENSE file for details.
+### Deep Dive Tutorial
 
-**Key Permissions:**
-- ✅ Commercial use
-- ✅ Modification & Distribution
-- ✅ Patent use
-- ✅ Private use
+For comprehensive guides including Python integration, web interfaces, and advanced configurations:
 
-**Requirements:**
-- ⚠️ Include license and copyright notice
-- ⚠️ Document significant changes
-- ⚠️ Include NOTICE file if distributing
+📘 **[Read TUTORIAL.md](TUTORIAL.md)** — Complete step-by-step guide with troubleshooting
 
----
+### Official Resources
 
-## 📚 References
+- **[Ollama Documentation](https://ollama.ai)** — Framework reference
+- **[IBM Granite Docs](https://www.ibm.com/granite/docs/)** — Model specifications
+- **[Ollama GitHub](https://github.com/ollama/ollama)** — Source code and issues
+- **[Raspberry Pi Documentation](https://www.raspberrypi.com/documentation/)** — Hardware guides
 
-### Agentic AI Patterns
-- [Anthropic's Multi-Agent Systems Research](https://www.anthropic.com/engineering/multi-agent-research-system)
-- [DeepLearning.AI: Agentic Patterns](https://www.deeplearning.ai/the-batch/agentic-design-patterns-part-2-reflection/)
-- [LangGraph: Multi-Agent Overview](https://langchain-ai.github.io/langgraph/concepts/multi_agent/)
+### Related Projects
 
-### IBM Granite Models
-- [Ollama Granite Models](https://ollama.com/blog/ibm-granite)
-- [Granite3-MoE on Ollama](https://ollama.com/library/granite3-moe)
-- [IBM Granite GitHub](https://github.com/ibm-granite)
+- **[Open WebUI](https://github.com/open-webui/open-webui)** — Web interface for Ollama
+- **[LM Studio](https://lmstudio.ai/)** — GUI for managing models
+- **[IBM Granite on HuggingFace](https://huggingface.co/ibm-granite)** — Model hub
 
-### Model Optimization
-- [Ollama Documentation](https://ollama.com)
-- [Mixture of Experts Research](https://arxiv.org/abs/2101.03961)
+### Advanced Topics
 
----
+Once you've mastered the basics:
 
-## 👤 Author
+1. **Fine-tune Granite 4.0** on your domain-specific data
+2. **Build a web interface** using Flask + Ollama API
+3. **Integrate with Home Assistant** for voice-controlled smart home
+4. **Deploy multiple Pis** for distributed inference
+5. **Try other models** like TinyLlama, Phi, or LLaMA variants
+6. **Create RAG pipelines** for document Q&A systems
 
-**Julian A. Gonzalez, IBM Champion 2025**
+### Community & Support
 
-This is an independent open-source project created to demonstrate modern agentic AI design patterns using IBM's Granite models.
-
-**DISCLAIMER:** This is **NOT an official IBM product**. This project is independently maintained and uses IBM's open-source Granite models under the Apache 2.0 license.
+- **Issues/Bugs:** [GitHub Issues](https://github.com/Jewelzufo/granitepi-4-nano/issues)
+- **Discussions:** [GitHub Discussions](https://github.com/Jewelzufo/granitepi-4-nano/discussions)
+- **Community:** r/ollama, r/raspberry_pi on Reddit
+- **Professional:** IBM TechXchange community
 
 ---
 
-## 🌟 Acknowledgments
+## Contributing
 
-- **IBM Granite Team** - For the excellent Granite3-MoE model and their continued efforts into Granite
-- **Ollama Project** - For the containerized model runtime
-- **Rich Library** - For beautiful terminal UI
-- **Open Source Community** - For continuous inspiration
+We welcome contributions!
+
+- Found a bug? Open an issue
+- Have a better approach? Submit a PR
+- Benchmarked different hardware? Share your results
+- Created an interesting application? Link it in discussions
+
+## License
+
+- **This tutorial:** Apache 2.0 — free to use, modify, distribute
+- **IBM Granite model:** Apache 2.0 — free for commercial use
+- **Ollama:** MIT License
 
 ---
 
-<div align="center">
+## Project Status
 
-**Built with ❤️ using IBM Granite and Ollama**
+✅ **Production Ready** — Tested on Raspberry Pi 5 (8GB)  
+✅ **Actively Maintained** — Following Ollama & Granite updates  
+✅ **Community Supported** — Feedback and contributions welcome
 
-⭐ If you find this useful, consider starring the repository!
+**Last tested:** November 2025  
+**Ollama version:** 0.1.20+  
+**Raspberry Pi OS:** Bookworm 64-bit
 
-[↑ Back to top](#-dual-agent-system-ibm-granite3-moe1b)
+---
+
+<p align="center">
+  <strong>Made with ❤️ for privacy advocates, AI learners, and Raspberry Pi enthusiasts</strong>
+</p>
+
+<p align="center">
+  <em>Ready to dive deeper? Check out <a href="TUTORIAL.md">TUTORIAL.md</a> for advanced guides! 🚀</em>
+</p>
