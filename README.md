@@ -7,6 +7,7 @@
 
 [![Python 3.8+](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-green.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Hits](https://hits.sh/github.com/Jewelzufo/granite-duo-v1.svg?style=for-the-badge&label=Repo%20Views&color=0D1117&labelColor=1F6FEB&logo=github)](https://github.com/Jewelzufo/granite-duo-v1)
 
 
 **An agentic AI system implementing the Reflection design pattern using IBM's Granite3-MoE:1B model**
