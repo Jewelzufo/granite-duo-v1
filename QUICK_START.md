@@ -1,5 +1,13 @@
 # Dual-Agent System - Project Summary & Quick Start
 
+<p align="center">
+  <img src="https://img.shields.io/badge/Status-Active-2ECC71?style=flat&labelColor=0D1117" />
+  <img src="https://img.shields.io/badge/Updated-2026-1F6FEB?style=flat&labelColor=0D1117" />
+  <img src="https://img.shields.io/badge/Maintainer-Julian%20A.%20Gonzalez-1F6FEB?style=flat&labelColor=0D1117" />
+</p>
+
+<br>
+
 ## 📦 What You've Received
 
 This is a complete, dual-agent system implementing cutting-edge agentic AI patterns using IBM's super-efficient Granite3-MoE:1B model.

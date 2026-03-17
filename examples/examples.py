@@ -22,7 +22,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from dual_agent_granite import (
+from src.dual_agent_granite import (
     OllamaClient,
     DualAgentCoordinator,
     AgentConfig,
