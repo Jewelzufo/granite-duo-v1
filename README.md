@@ -19,7 +19,6 @@
 </div>
 
 <div align="center">
-  <img src="https://github.com/Jewelzufo/granite-duo-v1/blob/main/1000068993%20(1).jpg?raw=true" alt="Ollama and IBM logo with cyberpunk theme" width="650" height="350" />
   <h2>Privacy-First Multi-Agent AI Learning System</h2>
   <p>
     <em>No cloud dependencies • No data sharing • Complete transparency</em>
