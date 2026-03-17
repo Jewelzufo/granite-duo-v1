@@ -43,6 +43,8 @@
 
 ---
 
+<br>
+
 ## 🎯 Overview
 
 This project implements a **production-ready dual-agent system** that leverages the **Reflection agentic design pattern**. Two specialized AI agents collaborate iteratively to produce high-quality responses:
@@ -56,6 +58,8 @@ Perfect for research, content creation, code generation, and complex problem-sol
 
 ---
 
+<br>
+
 ## ✨ Features
 
 - ⚡ **Lightweight & Efficient** - Runs on ~2-4GB RAM using 1B parameter Mixture-of-Experts model
@@ -68,6 +72,8 @@ Perfect for research, content creation, code generation, and complex problem-sol
 - 📚 **Well-Documented** - 8 complete examples covering diverse use cases
 
 ---
+
+<br>
 
 ## 🏗️ Architecture
 
@@ -128,6 +134,8 @@ Perfect for research, content creation, code generation, and complex problem-sol
 - Windows: Download installer from website
 
 ---
+
+<br>
 
 ## ⚙️ Installation
 
